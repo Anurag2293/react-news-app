@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 
 export default class NewsItem extends Component {
+
+    static defaultProps = {
+        imageUrl : 'https://images.hindustantimes.com/tech/img/2023/01/05/960x540/Samsung_Galaxy_A14_5G_1672889924525_1672889938166_1672889938166.jpg'
+    }
     
     render() {
         let {title, description, imageUrl, newsUrl} = this.props;
+        
         return (
             <div className='my-3'>
-                <div className="card" style={{width: '18rem'}}>
-                    <img src={!imageUrl?'https://tech.hindustantimes.com/mobile/news/samsung-upgrades-selfie-camera-and-screen-on-200-phone-71672859226346.html':imageUrl} className="card-img-top" alt="..."/>
+                <div className="card">
+                    <img src={imageUrl} className="card-img-top" alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">{title}...</h5>
                             <p className="card-text">{description}...</p>
