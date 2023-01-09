@@ -11,7 +11,6 @@ const News = (props) => {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
-    // document.title = `${this.capitalizeFirstLetter(props.category)} - NewsMonkey`;
 
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -36,15 +35,16 @@ const News = (props) => {
 
     useEffect(() => {
         updateNews();
+        document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
 
         // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const fetchMoreData = async () => {
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page+1}&pageSize=${props.pageSize}`;
+        
         setPage(page+1)
-
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
         const data = await fetch(url);
         const parsedData = await data.json();
 
@@ -54,7 +54,7 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className="text-center" style={{ margin: '40px 0px' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            <h1 className="text-center" style={{ margin: '40px 0px', marginTop: '5.4rem' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
             {loading && <Spinner />}
 
             <InfiniteScroll
