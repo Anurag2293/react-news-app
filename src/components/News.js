@@ -60,7 +60,7 @@ const News = (props) => {
             <InfiniteScroll
                 dataLength={articles?.length || 10}
                 next={fetchMoreData}
-                hasMore={articles.length !== totalResults}
+                hasMore={articles?.length !== totalResults}
                 loader={<Spinner />}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
