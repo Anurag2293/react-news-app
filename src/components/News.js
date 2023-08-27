@@ -35,7 +35,7 @@ const News = (props) => {
 
     useEffect(() => {
         updateNews();
-        document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
+        document.title = `${capitalizeFirstLetter(props.category)} - NewsBucket`;
 
         // https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,11 +54,11 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className="text-center" style={{ margin: '40px 0px', marginTop: '5.4rem' }}>NewsMonkey - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            <h1 className="text-center" style={{ margin: '40px 0px', marginTop: '5.4rem' }}>NewsBucket - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
             {loading && <Spinner />}
 
             <InfiniteScroll
-                dataLength={articles.length}
+                dataLength={articles?.length || 10}
                 next={fetchMoreData}
                 hasMore={articles.length !== totalResults}
                 loader={<Spinner />}
